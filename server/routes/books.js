@@ -29,6 +29,7 @@
 
   //  GET the Book Details page in order to add a new Book
   router.get('/add', (req, res, next) => {
+
     res.render('books/details', {
       title: "Add a new Book",
       books: "",
@@ -41,12 +42,12 @@
   router.post('/add', (req, res, next) => {
 
     let newBook = book({
-      "Title": req.body.title,
-      "Price": req.body.price,
-      "Author": req.body.author,
-      "Genre": req.body.genre
-
+      "title": req.body.title,
+      "price": req.body.price,
+      "author": req.body.author,
+      "genre": req.body.genre
     });
+
     book.create(newBook, (err, book) => {
       if (err) {
         console.log(err);
@@ -54,48 +55,42 @@
       } else {
         res.redirect('/books');
       }
-
     });
+
   });
 
   // GET the Book Details page in order to edit an existing Book
-  router.get('/:id', (req, res, next) => {
-    try {
-      // get a reference to the id from the url
-      //let id = mongoose.Types.ObjectId.createFromHexString(req.params.id);
-      let id = req.params.id;
-      // find one book by its id
-      book.findById(id, (err, books) => {
-        if (err) {
-          console.log(err);
-          res.end(error);
-        } else {
-          // show the book details view
-          res.render('books/details', {
-            title: 'Edit Book Details',
-            books: books,
-            displayName: req.user ? req.user.displayName : ''
-          });
-        }
-      });
-    } catch (err) {
-      console.log(err);
-      res.redirect('/errors/404');
-    }
+  router.get('/edit/:id', (req, res, next) => {
 
+    let id = req.params.id;
+
+    // find one book by its id
+    book.findById(id, (err, books) => {
+      if (err) {
+        console.log(err);
+        res.end(error);
+      } else {
+        // show the book details view
+        res.render('books/details', {
+          title: 'Edit Book Details',
+          books: books,
+          displayName: req.user ? req.user.displayName : ''
+        });
+      }
+    });
   });
 
   // POST - process the information passed from the details form and update the document
-  router.post('/:id', (req, res, next) => {
+  router.post('/edit/:id', (req, res, next) => {
 
     let id = req.params.id;
 
     let updatedBook = book({
       "_id": id,
-      "Title": req.body.title,
-      "Price": req.body.price,
-      "Author": req.body.author,
-      "Genre": req.body.genre
+      "title": req.body.title,
+      "price": req.body.price,
+      "author": req.body.author,
+      "genre": req.body.genre
     });
 
     book.update({
@@ -129,5 +124,6 @@
       }
     });
   });
+
 
   module.exports = router;
