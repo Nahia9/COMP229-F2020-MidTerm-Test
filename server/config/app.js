@@ -1,7 +1,7 @@
-  /*File Name: app.js *
-  Student name: Nahia Akter *
-  StudentID: 301106956 *
-  File Description: COMP229 - F2020 - MidTerm*/
+  /*File Name: app.js 
+  Student name: Nahia Akter 
+  StudentID: 301106956 
+  File Description: COMP229 - F2020 - MidTerm */
 
   // moddules for node and express
   let createError = require('http-errors');
@@ -45,7 +45,7 @@
   }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, '../../client')));
-
+  app.use(express.static(path.join(__dirname, '../../node_modules')));
   // route redirects
   app.use('/', index);
   app.use('/books', books);

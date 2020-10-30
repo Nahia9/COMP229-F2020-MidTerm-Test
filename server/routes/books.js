@@ -93,7 +93,7 @@
       "genre": req.body.genre
     });
 
-    book.update({
+    book.updateOne({
       _id: id
     }, updatedBook, (err) => {
       if (err) {
