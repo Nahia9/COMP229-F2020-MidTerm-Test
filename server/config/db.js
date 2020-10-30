@@ -1,4 +1,4 @@
 module.exports = {
-  //local MongoDB deployment ->
-  "URI": "mongodb://localhost/book_list"
+  // connected to MongoDB atlus server
+  "URI": "mongodb+srv://Nahia:mqj92gQsQsv8soCE@mongodb-server.yoqiv.mongodb.net/book_list?retryWrites=true&w=majority"
 };
