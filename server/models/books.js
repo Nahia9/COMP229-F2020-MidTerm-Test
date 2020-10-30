@@ -2,12 +2,12 @@ let mongoose = require('mongoose');
 
 // create a model class
 let Book = mongoose.Schema({
-  Title: String,
-  Price: String,
-  Author: String,
-  Genre: String
+  title: String,
+  price: String,
+  author: String,
+  genre: String
 }, {
   collection: "books"
 });
 
-module.exports = mongoose.model('Book', Book);
+module.exports = mongoose.model('books', Book);
